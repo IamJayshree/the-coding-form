@@ -1,0 +1,22 @@
+{% load static %}
+
+<nav class="theNavBar">
+  <ul class="menuItems">
+    <li class="listclass"><a href='{% url 'home'  %}' data-item='Home'>Home</a></li>
+    <li class="listclass"><a href='{% url 'home'  %}' data-item='About'>About</a></li>
+    <li class="listclass"><a href='{% url 'index'  %}' data-item='Compiler'>Compiler</a></li>
+  {% if user.is_authenticated %}
+    <li class="listclass"><a href='{% url 'dashboard'  %}' data-item='{{ user.username }}'>{{ user.username }}</a></li> 
+    <li class="listclass"><a href="javascript:{document.getElementById('logout').submit()}" data-item='Logout'>Logout</a></li> 
+    <form action=" {% url 'logout' %}" method="POST" id="logout">
+      {% csrf_token %}
+    <input type="hidden">
+    </form>
+  {% else %}
+     <li class="listclass"><a href='{% url 'login'  %}' data-item='Login'>Login</a></li>  
+     <li class="listclass"><a href='{% url 'register'  %}' data-item='Register'>Register</a></li>
+  {% endif %}
+    
+  </ul>
+</nav> 
+  <!-- {% if 'login' in request.path %}   {% endif %}-->  
