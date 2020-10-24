@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Custom -->
+  <script src="https://kit.fontawesome.com/c65385f69d.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{% static 'css/style.css'%}">
+  <link href="https://cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css" rel="stylesheet"> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <title>{% block title %}{% endblock %} The Coding Form</title>
+</head>
+    <!-- NavBar -->
+    {% include 'partials/_navbar.html' %}
+    <!-- Main content -->
+    {% block content %}
+
+
+    {% endblock  %} 
+    <!-- Footer -->
+    {% include 'partials/_footer.html' %}
+  <script src="{% static 'main.js' %} "></script>
+</body>
+</html>
+

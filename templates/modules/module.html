@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %} {{ module.titlename }} | {% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<body class="container">
+<h1 class="titleW"> {{ module.titlename}} </h1>
+
+{% if questions %}
+    {% for question in questions  %}
+        <a href="{% url 'question' question.id %}" class="colClass">
+         <div class="modBox ">
+  	     <h3 > &#8226; {{ question.name }} </h3>
+       </div>
+       </a>    
+    {% endfor %}
+{% else %}
+     	<h3> No questions in {{ module.titlename }} yet !!! </h3>
+{% endif %}
+ 
+{% endblock %}
+
