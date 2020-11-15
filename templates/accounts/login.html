@@ -1,0 +1,39 @@
+
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title> Login | The Coding Form </title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+
+</head>
+
+<body>
+  <div class="wrapper fadeInDown">
+  <div id="formContent">
+   <!-- Alert -->
+        {% include 'partials/_alerts.html' %}
+    <div class="fadeIn first">
+      <img src="{% static 'img/qr-code.png' %}" id="icon" alt="User Icon" />
+      
+      <!-- icon by Vitaly Gorbachev - flaticon -->
+    </div>
+  <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" class="fadeIn second" id="login" name="username" required  placeholder="Enter Username">
+        <input type="password" class="fadeIn third" name="password" required id="password"  placeholder="Enter Password">
+
+        <input type="submit" value="Login" class="fadeIn fourth">
+       
+  </form>
+
+  <div id="formFooter">
+      <a class="underlineHover lastline" href="{% url 'register' %}">or Sign up?</a>
+    </div>
+   </div>
+</div>
+  <script src="{% static 'main.js' %} "></script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+
+{% block title %} Compiler | {% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<style>
+html{
+  font-family: Hack, monospace;
+}
+
+
+.box {
+  display: block;
+  top: 30px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.box select {
+  background-color: #4d089a;
+  /*background-color: black;*/
+  color: white;
+  /*color: black;*/
+  padding: 12px;
+  width: 250px;
+  border: none;
+  font-size: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+
+   position: relative;
+    left: 50%;
+    top: 70px;
+   font-family: Hack, monospace;
+}
+
+.box::before {
+  content: "\f13a";
+  font-family: FontAwesome;
+ /* top: 0;
+  right: 0;*/
+  width: 20%;
+  height: 100%;
+  text-align: center;
+  font-size: 28px;
+  line-height: 45px;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.box:hover::before {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.box select option {
+  padding: 30px;
+}
+
+
+.topbox {
+  top: 400px;
+}
+
+.midbox {
+  top: 600px;
+}
+
+.bottombox {
+  top: 900px;
+}
+
+.textedit{
+  height: 400px;
+}
+
+.boxeditor {
+  display: block;
+  position: relative;
+  
+  right: 15%;
+  width: 80%;
+  max-width: 900px;
+  margin: 20vh auto;
+}
+
+textarea {
+  -webkit-tap-highlight-color: transparent;
+  width: 100%;
+  min-height: 10rem;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  line-height: 2rem;
+  font-weight: 550;
+  background:#FFFFFF;
+  border: none;
+  border-radius: 1rem;
+  outline: none;
+  box-shadow: 
+    18px 18px 30px #D1D9E9, 
+    -18px -18px 30px #FFFFFF;
+  resize: vertical;
+  transition: ease .2s;
+  cursor: pointer;
+  font-family: Hack, monospace;
+}
+
+textarea::placeholder {
+  color: grey;
+}
+
+textarea:focus {
+  min-height: 12rem;
+  box-shadow: 
+    inset 18px 18px 30px #D1D9E9, 
+    inset -18px -18px 30px #FFFFFF;
+}
+
+/* Chrome/Opera/Safari */
+::-webkit-input-placeholder { 
+  color: transparent;
+}
+/* Firefox 19+ */
+::-moz-placeholder { 
+  color: transparent;
+}
+/* IE 10+ */
+:-ms-input-placeholder { 
+  color: transparent;
+}
+/* Firefox 18- */
+:-moz-placeholder { 
+  color: transparent;
+}
+
+textarea:placeholder-shown {
+  background: none;
+}
+
+</style>
+
+<body class="container">
+
+<div class="wrapper">
+ {% comment %} <!-- Alert -->
+{% include 'partials/_alerts.html' %} {% endcomment %}
+ <form action="{% url 'index'  %}" method="POST">
+  {% csrf_token %}
+   <div class="box">
+    <select name="lang">
+      <option value="0" disabled selected>Select Language</option>
+      <option value="1">C++</option>
+      <option value="2">Java</option>
+      <option value="3">Python3</option>
+    </select>
+    </div>
+
+	{% comment %} <textarea id="html" placeholder="/* Write your code here */" name="aesteditor" class="boxeditor"></textarea> {% endcomment %}
+
+
+<div class="boxeditor topbox">
+  <textarea name="aesteditor" id="html" placeholder="Type something..." class="textedit"></textarea>
+</div>
+
+{% if inputdata %}
+   <div class="boxeditor midbox">
+<textarea id="html" placeholder="/* Input */" name="inputbox" >{{ inputdata }}</textarea>
+</div>
+<br>
+{% else %}
+    <textarea id="html" placeholder="/* Input */" name="inputbox" ></textarea>
+
+{% endif %}
+
+  
+  {% if outputdata %}
+  
+  {% comment %} <textarea id="html" name="outputbox" disabled='true' >{{ outputdata }} </textarea> {% endcomment %}
+  {% comment %} <div height="20px" width="30px" style="background-color:pale blue;">
+    <h2> {{ outputdata }} </h2>
+  </div> {% endcomment %}
+
+<div class="boxeditor bottombox">
+<textarea disabled> {{ outputdata }} </textarea>
+</div>
+
+
+  {% endif %}
+  <br>
+  <a href="{% url 'index'  %}"><input type="button" value="New"></a>
+  
+  <input type="submit" value="Submit">
+   </form>
+  </div>
+  </body>
+  {% endblock %}
+
+
+     

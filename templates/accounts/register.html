@@ -1,0 +1,36 @@
+{% load static %}
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title> User Registration | The Coding Form </title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="wrapper fadeInDown">
+  <div id="formContent">
+  <div class="fadeIn first">
+    <img src="{% static 'img/cute.png' %}" id="icon" alt="User Icon" />
+    <!-- Icons made by Nikita Golubev - Flaticon-->
+  </div>
+
+  <form action="register" method="POST">
+      {% csrf_token %}
+    <input type="text" name="username" class="fadeIn second" required placeholder="Enter you Username">
+    <input type="password" name="password" class="fadeIn third"  placeholder="Enter Password" required>
+    <input type="password" name="password2" class="fadeIn fourth"  placeholder="Confirm Password" required>
+    <input type="submit" value="Register" class="fadeIn fifth">    
+  </form>
+  <div id="formFooter">
+      <a class="underlineHover lastline" href="{% url 'login' %}">or Log In?</a>
+    </div>
+  </div>
+</div>
+ <script src="{% static 'main.js' %} "></script>
+  <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
+</body>
+</html>
